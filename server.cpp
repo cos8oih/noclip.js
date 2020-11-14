@@ -61,7 +61,7 @@ void writeCallback(
 		auto json = json::parse(req.body);
 
 		auto base = getBase(json["module"]);
-		auto address = base + json["address"];
+		auto address = base + json["address"].get<uintptr_t>();
 		auto bytes = bytesFromString(json["bytes"]);
 
 		writeMemory(address, bytes);
